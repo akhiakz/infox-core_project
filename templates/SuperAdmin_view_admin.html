@@ -1,0 +1,49 @@
+{%extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+
+<style>
+  .dropdown-item:hover {
+    color: #f4f4f8;
+  }
+</style>
+
+
+
+
+
+<div class="row">
+  {% for i in user_registration %}
+  <div class="col-sm-4 grid-margin">
+    <div class="card">
+      
+
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                <h1 class="mb-1 font-weight-normal">{{i.fullname}}</h1>
+                <!-- <p class="text-success ms-2 mb-0 font-weight-medium">+3.5%</p> -->
+              </div>
+              <h3 class="text-muted font-weight-normal">{{i.branch}}</h3>
+              <br>
+              <br>
+              <a href="{% url 'SuperAdmin_admin_update' i.id %}" class="btn btn-social-icon-text btn-outline-success">
+                <i class="mdi mdi-lead-pencil"></i> Update</a>
+
+              <a href="{% url 'admindelete' i.id %}" class="btn btn-social-icon-text btn-outline-danger"
+                onclick=" return confirm('Are you sure you want to delete this item?');">
+                <i class="mdi mdi-delete-forever"></i> Delete</a>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+              <img src="{{ i.photo.url }}" style="border-radius: 50%;" width="100" height="100" />
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+<!-- onclick="return confirm('Are you sure you want to delete this item?');" -->
